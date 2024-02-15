@@ -4,3 +4,11 @@ packages:
       - name: joke
         runtime: 'python:default'
         web: true
+        environment:
+          DATABASE_URL: "${DATABASE_URL}"
+          DATABASE_USER: "${DATABASE_USER}"
+          DATABASE_NAME: "${DATABASE_NAME}"
+          DATABASE_PASSWORD: "${DATABASE_PASSWORD}"
+        limits:
+          timeout: 900000
+          memory: 256
