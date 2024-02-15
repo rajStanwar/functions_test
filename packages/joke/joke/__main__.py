@@ -1,5 +1,3 @@
-print("Inside main.py script")
-
 import pyjokes
 import pymongo
 import os
@@ -8,7 +6,7 @@ import os
 
 def main():
   try:
-    mongo_uri = "mongodb+srv://doapps-e44dd091-4713-4513-9ea5-222647a16f3a:9e2506TgD3YE4lW1@mongodb-do-function-test-6c227d6b.mongo.ondigitalocean.com/myriad"
+    mongo_uri = "mongodb+srv://doapps-5865b38b-6ce0-4a8f-bad8-6c7a1a3328fa:9e2506TgD3YE4lW1@mongodb-do-function-test-6c227d6b.mongo.ondigitalocean.com/myriad"
     print(mongo_uri)
     client = pymongo.MongoClient(mongo_uri)
     db = client["myriad"]
