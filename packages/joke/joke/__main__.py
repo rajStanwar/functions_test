@@ -7,7 +7,7 @@ import os
 
 
 def main():
-  # mongo_uri = os.environ.get("MONGO_URI")
+  mongo_uri = os.environ.get("DB_URI")
   # print(mongo_uri)
   # client = pymongo.MongoClient(mongo_uri)
   # db = client["myriad"]
@@ -20,6 +20,7 @@ def main():
   return {
     "body": {
       "response_type": "in_channel",
-      "text": joke
+      "text": joke,
+      "uri": mongo_uri
     }
   }

@@ -4,7 +4,7 @@ packages:
       - name: joke
         runtime: "python:default"
         environment:
-          MONGO_URI: "${MONGO_URI}"
+          MONGO_URI: "${DB_URI}"
         limits:
           timeout: 900000
           memory: 256
