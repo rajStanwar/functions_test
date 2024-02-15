@@ -7,16 +7,16 @@ import os
 
 
 def main():
-  mongo_uri = os.environ.get("DB_URI")
-  # print(mongo_uri)
-  # client = pymongo.MongoClient(mongo_uri)
-  # db = client["myriad"]
+  mongo_uri = "mongodb+srv://doadmin:2Y7x5o01z4b3OpN6@mongodb-do-function-test-6c227d6b.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=mongodb-do-function-test"
+  print(mongo_uri)
+  client = pymongo.MongoClient(mongo_uri)
+  db = client["myriad"]
   joke = pyjokes.get_joke()
   
   # insert joke in the database
   print("Joke: ", joke)
   
-  # db.jokes.insert_one({"joke": joke})
+  db.jokes.insert_one({"joke": joke})
   return {
     "body": {
       "response_type": "in_channel",
