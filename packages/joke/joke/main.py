@@ -1,3 +1,5 @@
+print("Inside main.py script")
+
 import pyjokes
 import pymongo
 import os
