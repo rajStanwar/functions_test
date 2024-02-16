@@ -1,9 +1,8 @@
-# Sample Function: Python Joke API
+# Sample Function: Python "Hello World"
 
 ## Introduction
 
-This repository contains a sample joke API function written in Python. You can deploy it on DigitalOcean's App Platform as a Serverless Function component.
-Documentation is available at https://docs.digitalocean.com/products/functions.
+This repository contains a sample "Hello World" function written in Python. You can deploy it on DigitalOcean's App Platform as a Serverless Function component or as a standalone Function. Documentation is available at https://docs.digitalocean.com/products/functions.
 
 ### Requirements
 
@@ -14,37 +13,62 @@ Documentation is available at https://docs.digitalocean.com/products/functions.
 
 ```
 # clone this repo
-git clone git@github.com:digitalocean/sample-functions-python-jokes.git
+git clone git@github.com:digitalocean/sample-functions-python-helloworld.git
 ```
 
 ```
-# deploy the project, using "remote-build" so that the build and runtime environments match
-> doctl serverless deploy sample-functions-python-jokes --remote-build
-Deploying 'sample-functions-python-jokes'
+# deploy the project, using a remote build so that compiled executable matched runtime environment
+doctl serverless deploy sample-functions-python-helloworld --remote-build
+```
+
+The output from the deploy command will resemble the following.
+```
+Deploying 'sample-functions-python-helloworld'
   to namespace 'fn-...'
-  on host 'https://faas-...'
-Submitted action 'joke' for remote building and deployment in runtime python:default
-Processing of 'joke' is still running remotely ...
-...
-Deployed functions ('doctl sbx fn get <funcName> --url' for URL):
-  - joke
+  on host '...'
+Deployment status recorded in 'sample-functions-python-helloworld/.deployed'
+
+Deployed functions ('doctl sls fn get <funcName> --url' for URL):
+  - sample/hello
 ```
 
+## Using the Function
+
 ```
-# execute the function
-> doctl serverless functions invoke joke
+doctl serverless functions invoke sample/hello
+```
+
+This will return the default response from the function.
+```
 {
-  "body": {
-    "response_type": "in_channel",
-    "text": "Waiter: He's choking! Is anyone a doctor? Programmer: I'm a Vim user."
-  }
+  "body": "Hello stranger!"
 }
 ```
 
-Note the CLI command can be abbreviated as `doctl sls fn invoke joke`.
+You can pass a parameter to your function using the `-p` command line argument.
+```
+doctl serverless functions invoke sample/hello -p name:functions
+{
+  "body": "Hello functions!"
+}
+```
 
+Use this command to retrieve the URL for your function and use it as an API.
+```
+doctl sls fn get sample/hello --url
+```
+
+You can use that API directly in your browser, with `curl` or with an API platform such as Postman.
+Parameters may be passed as query parameters, or as JSON body. Here are some examples using `curl`.
+
+```
+curl `doctl sls fn get sample/hello --url`?name=query
+```
+
+```
+curl -H 'Content-Type: application/json' -d '{"name":"body"}' `doctl sls fn get sample/hello --url`
+```
 
 ### Learn More
 
-You can learn more about Functions and App Platform integration in [the official App Platform Documentation](https://www.digitalocean.com/docs/app-platform/).
-# functions_test
+You can learn more about Functions by reading the [Functions Documentation](https://docs.digitalocean.com/products/functions).
