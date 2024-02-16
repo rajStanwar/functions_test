@@ -1,3 +1,5 @@
+environment:
+  API_KEY: ${DATABASE_HOST}
 packages:
   - name: sample
     actions:
